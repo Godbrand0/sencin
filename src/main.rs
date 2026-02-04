@@ -72,30 +72,21 @@ fn main() {
     println!("Add new student");
 
     let mut students = StudentList::new();
-    //   println!("COmmands:");
-    //     println!("View: to see all students");
-    //     println!("Add: to add student");
-    //     println!("Del: to delete student");
-    //     println!("Update: to update student status");
-    //     println!("Graduate: to graaduate student");
-    //     println!("Exit: to exit");
+
+    println!("\nCommands:");
+    println!("View: to see all students");
+    println!("Add: to add student");
+    println!("Del: to delete student");
+    println!("Update: to update student status");
+    println!("Graduate: to graduate student");
+    println!("Exit: to exit");
 
     let mut command = String::new();
 
     loop {
-        println!("\nCommands:");
-        println!("View: to see all students");
-        println!("Add: to add student");
-        println!("Del: to delete student");
-        println!("Update: to update student status");
-        println!("Graduate: to graduate student");
-        println!("Exit: to exit");
-
-        // Get command input at the beginning of each loop iteration
         take_command(&mut command);
 
-        // DEBUG: Print current command value
-        println!("DEBUG: Current command = '{}'", command);
+        println!("Current command = '{}'", command);
 
         if command == "view" {
             println!("viewing................");
@@ -110,8 +101,6 @@ fn main() {
                     );
                 }
             }
-            // DEBUG: Print message after viewing students
-            println!("DEBUG: Viewed students successfully");
         } else if command == "del" {
             let mut student_id = String::new();
 
@@ -139,8 +128,6 @@ fn main() {
             let age: u32 = student_age.trim().parse().unwrap();
 
             students.add_student(student_name.trim().to_string(), age);
-            // DEBUG: Print message after adding student
-            println!("DEBUG: Student added successfully");
         } else if command == "update" {
             let mut student_id = String::new();
             let mut new_status = String::new();
@@ -168,8 +155,7 @@ fn main() {
             };
 
             students.update_status(student_id.trim().parse().unwrap(), status);
-            // DEBUG: Print message after updating status
-            println!("DEBUG: Student status updated successfully");
+            println!(" Student status updated successfully");
         } else if command == "graduate" {
             let mut student_id = String::new();
 
@@ -179,16 +165,12 @@ fn main() {
                 .expect("Failed to read line");
 
             students.graduate_student(student_id.trim().parse().unwrap());
-            // DEBUG: Print message after graduating student
-            println!("DEBUG: Student graduated successfully");
+            println!(" Student graduated successfully");
         } else if command == "exit" {
             println!("Goodbye!");
             break;
         } else {
             println!("Unknown command: {}", command);
-            // DEBUG: Print message for unknown command
-            println!("DEBUG: Unknown command received");
-            // Don't break here, just continue the loop
         }
     }
 }
@@ -198,6 +180,4 @@ fn take_command(cmd: &mut String) {
     cmd.clear();
     io::stdin().read_line(cmd).expect("Failed to read line");
     *cmd = cmd.trim().to_string();
-    // DEBUG: Print the command that was just read
-    println!("DEBUG: take_command read '{}'", cmd);
 }
