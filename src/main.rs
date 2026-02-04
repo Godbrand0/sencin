@@ -2,7 +2,7 @@ use std::io;
 #[derive(Debug)]
 enum Status {
     Active,
-    Inactive,
+    Inactive,   
     Suspended,
     Graduated,
     Probation,
